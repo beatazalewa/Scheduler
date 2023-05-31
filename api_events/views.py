@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+from .models import *
+from .serializers import *
 
 # Create your views here.
 
-def home(request):
-    return HttpResponse("This is our homepage")
-
-def events(request):
-    return HttpResponse("This is our events page")
+class AppointmentView(generics.CreateAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
